@@ -1,0 +1,98 @@
+{% extends 'main/base.html' %}
+
+<!-- BLOCK: 'title' Has Been Blocked To Change The Title Of The Web Page. -->
+{% block title %}
+    Home Page!
+{% endblock %}
+
+<!-- BLOCK: 'NotAuthenticated' Has Been Blocked To Ensure The Style Sheet Is Not Used. -->
+{% block NotAuthenticated %}
+{% endblock %}
+
+<!-- BLOCK: 'sideBar' Has Been Blocked To Show A Side Navigation Bar With A Coloured Link. -->
+{% block sideBar %}
+    <div class="sideNavigationBar">
+        <a href="/home" style="color: #FAB162">Home</a>
+        <hr style="height: 3px">
+        <a href="/add">Add</a>
+        <hr style="height: 3px">
+        <a href="/history">History</a>
+        <hr style="height: 3px">
+        <a href="/settings">Settings</a>
+        <hr style="height: 3px">
+        <a href="/logout">Logout</a>
+        <hr style="height: 3px">
+    </div>
+{% endblock %}
+
+<!-- BLOCK: 'content' Has Been Blocked To Change The Content Of The Web Page. -->
+{% block content %}
+    <!-- DISPLAY: Display Page Title And User First Name As Part Of It. -->
+    <h1 style="text-align: center; color: #FFFFFF">Your <span style="color: #FAB162">Dashboard</span> {{ user.first_name }} !</h1>
+    <hr style="height:3px;">
+
+    <!-- HTML IF STATEMENT: Used To Find Out Which Colour The Overall Balance Should Be. -->
+    {% if overallColour == "WHITE" %}
+        <h2 style="text-align: center; color: #FFFFFF">Overall Balance :  <span style="color: #FFFFFF">£{{ overall }}</span></h2>
+    {% elif overallColour == "GREEN" %}
+        <h2 style="text-align: center; color: #FFFFFF">Overall Balance :  <span style="color: #7AC74F">£{{ overall }}</span></h2>
+    {% elif overallColour == "RED" %}
+        <h2 style="text-align: center; color: #FFFFFF">Overall Balance :  <span style="color: #DD403A">£{{ overall }}</span></h2>
+    {% endif %}
+    <hr style="height:3px;">
+
+    <!-- DISPLAY: Display Total Income And Total Expense In Two Respective h2 Tags. -->
+    <!-- CONTEXT: The Income And Expense Totals Values Are Passed Into The Context For This Template. -->
+    <h2 style="text-align: center; color: #FFFFFF"><span style="opacity:0;">0</span>Income Total :  <span style="color: #7AC74F">£{{ income }}</span></h2>
+    <h2 style="text-align: center; color: #FFFFFF">Expense Total : <span style="color: #DD403A">£{{ expense }}</span></h2>
+    <hr style="height:3px;">
+
+    <!-- CANVAS: Canvas To Display Chart. -->
+    <div>
+        <canvas id="incomeExpenseChart"></canvas>
+    </div>
+
+    <!-- CHART.JS: Include Chart.Js-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- CREATE: Create Chart To Display In Canvas. -->
+    <script>
+          const ctx = document.getElementById('incomeExpenseChart');
+
+          new Chart(ctx, {
+              type: 'bar',
+
+              data: {
+                  labels: ['Income', 'Expense'],
+                  datasets: [{
+                      label: 'Total',
+                      data: [{{ income }}, {{ expense }}],
+                      borderWidth: 1,
+                      backgroundColor: ['#7AC74F', '#DD403A'],
+                  }]
+              },
+              options: {
+                  plugins: {
+                      legend: {
+                          display: false
+                      },
+                  },
+                  scales: {
+                      x: {
+                          ticks: {
+                              color: 'WHITE'
+                          },
+                      },
+                      y: {
+                          ticks: {
+                              color: 'WHITE'
+                          },
+                          beginAtZero: true
+                      }
+                  }
+              }
+          });
+    </script>
+    <hr style="height:3px;">
+{% endblock %}
+

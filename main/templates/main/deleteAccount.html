@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+
+<!-- BLOCK: 'title' And Change The Title Of The Web Page. -->
+{% block title %}
+    Settings Page - Delete Account!
+{% endblock %}
+
+<!-- BLOCK: 'NotAuthenticated' Has Been Blocked To Ensure The Style Sheet Is Not Used. -->
+{% block NotAuthenticated %}
+{% endblock %}
+
+<!-- BLOCK: 'sideBar' Has Been Blocked To Show A Side Navigation Bar With A Coloured Link. -->
+{% block sideBar %}
+    <div class="sideNavigationBar">
+        <a href="/home">Home</a>
+        <hr style="height: 3px">
+        <a href="/add">Add</a>
+        <hr style="height: 3px">
+        <a href="/history">History</a>
+        <hr style="height: 3px">
+        <a href="/settings" style="color: #FAB162">Settings</a>
+        <hr style="height: 3px">
+        <a href="/logout">Logout</a>
+        <hr style="height: 3px">
+    </div>
+{% endblock %}
+
+<!-- BLOCK: 'content' And Change The Content Of The Web Page. -->
+{% block content %}
+    <!-- DISPLAY: Display Page Title. -->
+    <h1 style="text-align: center; color: #FFFFFF">Your <span style="color: #FAB162">Settings</span> {{ user.first_name }} !</h1>
+    <hr style="height:3px;">
+
+    <h1 style="color: #FFFFFF">Delete Profile</h1>
+    <hr style="height:3px;">
+
+    <a style = "background-color: #303030; width: 100%; border-color: #FAB162; border-width: 3px;" href="{% url 'deleteUser' user.id%}" class="btn btn-danger btn-sm">Delete User</a>
+    <hr style="height:3px;">
+
+    <a style = "background-color: #303030; width: 100%; border-color: #FAB162; border-width: 3px;" href="/settings" class="btn btn-success">Go Back !</a>
+    <hr style="height:3px;">
+{% endblock %}

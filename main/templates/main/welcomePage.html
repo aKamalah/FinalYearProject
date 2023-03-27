@@ -1,0 +1,52 @@
+{% extends 'main/base.html' %}
+
+<!-- BLOCK: 'title' Has Been Blocked To Change The Title Of The Web Page. -->
+{% block title %}
+    Welcome Page!
+{% endblock %}
+
+<!-- BLOCK: 'mainStyling' Has Been Blocked To Not Use Its Styling. -->
+{% block mainStyling %}
+{% endblock %}
+
+<!-- BLOCK: 'fAColour' Has Been Blocked To Change The Hover Colour Of Font Awesome Icons. -->
+{% block fAColour %}
+    color: #303030;
+{% endblock fAColour %}
+
+<!-- BLOCK: 'sideBar' Has Been Blocked As The Side Navigation Bar Should Not Be Displayed. -->
+{% block sideBar %}
+{% endblock %}
+
+<!-- BLOCK: 'header' Has Been Blocked As The Header Should Not Be Displayed. -->
+{% block header %}
+{% endblock %}
+
+<!-- BLOCK: 'content' Has Been Blocked To Change The Content Of The Web Page. -->
+{% block content %}
+    <!-- DISPLAY: Display Application Heading And Creator. -->
+    <h1 style="color: #FAB162; text-align: center">Expense Tracker</h1>
+    <p style="color: #FFFFFF; text-align: center;">By Ahmad Kamal Abdul Hafiz</p>
+    <hr style="height:3px;">
+
+    <!-- CONTAINER: Container For HTML Elements. Elements Within Container Will Be In A Card. -->
+    <div class="container">
+        <a style = "background-color: #FAB162; width: 100%; border-color: #303030; border-width: 3px;" href="/login" class="btn btn-success">Login</a> <!-- LINK: Button Link To The Login Page. -->
+        <br><br>
+        <a style = "background-color: #FAB162; width: 100%; border-color: #303030; border-width: 3px;" href="/register" class="btn btn-success">Sign Up</a> <!-- LINK: Button Link To The Register Page. -->
+    </div>
+    <hr style="height:3px;">
+
+    <!-- SOCIAL MEDIA LINKS: Links To Social Media Using Font Awesome Icons. -->
+    <div class="center">
+        <p style="color: #FFFFFF; text-align: center;">Where Else You Can Find Us :)</p>
+        <a href="#" class="fa fa-facebook fa-2x"></a>
+        <a href="#" class="fa fa-twitter fa-2x"></a>
+        <a href="#" class="fa fa-instagram fa-2x"></a>
+        <a href="#" class="fa fa-snapchat-ghost fa-2x"></a>
+    </div>
+{% endblock %}
+
+<!-- BLOCK: 'footer' Has Been Blocked As The Footer Should Not Be Displayed. -->
+{% block footer %}
+{% endblock %}

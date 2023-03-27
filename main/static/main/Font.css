@@ -1,0 +1,11 @@
+/* FONT.CSS: File To Change Font Of Specified Elements. */
+
+@font-face {
+    font-family: "abc";
+    src: url("abc.ttf") format("truetype");
+}
+
+h1, h2, p, a, button, td {
+    font-family: abc, sans-serif;
+}
+

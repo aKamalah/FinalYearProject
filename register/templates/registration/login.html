@@ -1,0 +1,70 @@
+{% extends 'main/base.html' %}
+
+<!-- CRISPY_FORMS: Both Statements Below Are Required To Use 'crispy_forms'. -->
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+<!-- BLOCK: 'title' Has Been Blocked To Change The Title Of The Web Page. -->
+{% block title %}
+    Login Page!
+{% endblock %}
+
+<!-- BLOCK: 'mainStyling' Has Been Blocked To Not Use Its Styling. -->
+{% block mainStyling %}
+{% endblock %}
+
+<!-- BLOCK: 'fAColour' Has Been Blocked To Change The Hover Colour Of Font Awesome Icons. -->
+{% block fAColour %}
+    color: #303030;
+{% endblock fAColour %}
+
+<!-- BLOCK: 'sideBar' Has Been Blocked As The Side Navigation Bar Should Not Be Displayed. -->
+{% block sideBar %}
+{% endblock %}
+
+<!-- BLOCK: 'header' Has Been Blocked As The Header Should Not Be Displayed. -->
+{% block header %}
+{% endblock %}
+
+<!-- BLOCK: 'content' Has Been Blocked To Change The Content Of The Web Page. -->
+{% block content %}
+    <!-- DISPLAY: Display Application Heading And Creator. -->
+    <h1 style="color: #FAB162; text-align: center">Expense Tracker</h1>
+    <p style="color: #FFFFFF; text-align: center;">By Ahmad Kamal Abdul Hafiz</p>
+    <hr style="height:3px;">
+
+    <!-- CONTAINER: Container For HTML Elements. Elements Within Container Will Be In A Card. -->
+    <div class="container">
+        <h2 style="color: black;">Login</h2>
+        <hr style="height:3px;">
+
+        <!-- METHOD: 'method' - Specifies Method To Be Used When Submitting Data. POST or GET. -->
+        <!-- POST: 'POST' - Frontend To Backend (Secret Data Also, ENCRYPTS), get - Backend To Frontend (Retrieve). -->
+        <!-- ACTION: 'action' - Which Page To Go To Once Form Is Submitted. -->
+        <form method="POST">
+            {% csrf_token %} <!-- CSRF_TOKEN: Required When Making Use Of Forms To Not Run Into Issues. Security Reasons. -->
+            {{ form|crispy }} <!-- CRISPY_FORMS STYLING: Apply The 'crispy_forms' Styling To The Passed In Form. -->
+
+            <!-- SUBMIT BUTTON: Submit Button Is Required As Django Form Doesn't Provide. -->
+            <button style = "background-color: #FAB162; width: 100%; border-color: #303030; border-width: 3px;" type = "submit" name = "submitButton" class="btn btn-success"><span style='font-family: abc, sans-serif'>Login</span></button>
+
+            <p>Don't Have An Account? Create One <a href="/register">Here</a></p> <!-- LINK: Link To The Register Page. -->
+            <p>Forgot Password? Recover <a href="/resetPassword">Here</a></p> <!-- LINK: Link To The Reset Password Page. -->
+        </form>
+        <hr style="height:3px;">
+	</div>
+    <hr style="height:3px;">
+
+    <!-- SOCIAL MEDIA LINKS: Links To Social Media Using Font Awesome Icons. -->
+    <div class="center">
+        <p style="color: #FFFFFF; text-align: center;">Where Else You Can Find Us :)</p>
+        <a href="#" class="fa fa-facebook fa-2x"></a>
+        <a href="#" class="fa fa-twitter fa-2x"></a>
+        <a href="#" class="fa fa-instagram fa-2x"></a>
+        <a href="#" class="fa fa-snapchat-ghost fa-2x"></a>
+    </div>
+{% endblock %}
+
+<!-- BLOCK: 'footer' Has Been Blocked As The Footer Should Not Be Displayed. -->
+{% block footer %}
+{% endblock %}

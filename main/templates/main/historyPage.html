@@ -1,0 +1,228 @@
+{% extends 'main/base.html' %}
+
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+<!-- BLOCK: 'title' Has Been Blocked To Change The Title Of The Web Page. -->
+{% block title %}
+    History Page!
+{% endblock %}
+
+<!-- BLOCK: 'NotAuthenticated' Has Been Blocked To Ensure The Style Sheet Is Not Used. -->
+{% block NotAuthenticated %}
+{% endblock %}
+
+<!-- BLOCK: 'sideBar' Has Been Blocked To Show A Side Navigation Bar With A Coloured Link. -->
+{% block sideBar %}
+    <div class="sideNavigationBar">
+        <a href="/home">Home</a>
+        <hr style="height: 3px">
+        <a href="/add">Add</a>
+        <hr style="height: 3px">
+        <a href="/history">History</a>
+        <hr style="height: 3px">
+        <a href="/settings">Settings</a>
+        <hr style="height: 3px">
+        <a href="/logout">Logout</a>
+        <hr style="height: 3px"></div>
+{% endblock %}
+
+<!-- BLOCK: 'mainStyling' Has Been Blocked To Change The Styling For The Main Class. -->
+{% block mainStyling %}
+    /* TABLE STYLING: Styling For HTML Table. */
+    table {
+        width: 100%;
+        color: #FFFFFF;
+        text-align: center;
+    }
+
+    /* TD AND TH STYLING: Styling For HTML Table Data Cells And Header. */
+    td, th {
+        border: 3px solid #303030;
+    }
+
+    /* HOVER: Styling For When Specified Elements Are Hovered. */
+    tr:hover  {
+        opacity: 0.7;
+    }
+
+    /* LAYOUT: Structure Where Elements Are Displayed Onto The Page. */
+    .main {
+        margin-left:160px;
+        padding:0 10px;
+        overflow: auto;
+    }
+
+    /* SCROLL: Scroll Is Smooth Across Page During Navigation Button Clicks. */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* FLEX, COLUMN1 & COLUMN2: Display How Buttons Are Displayed So Side By Side */
+    .flex {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .column1 {
+      flex: 1 0;
+      width:50%;
+    }
+    .column2 {
+      flex: 1 0;
+      width:50%;
+    }
+{% endblock %}
+
+<!-- BLOCK: 'content' Has Been Blocked To Change The Content Of The Web Page. -->
+{% block content %}
+    <!-- DISPLAY: Display Page Title. -->
+    <h1 id="HistoryTop" style="text-align: center; color: #FFFFFF">Your Transaction <span style="color: #FAB162"> History</span> {{ user.first_name }} !</h1>
+    <hr style="height:3px;">
+
+    <!-- DISPLAY: Display Page Subtitle. -->
+    <h2 style="text-align: center; color: #FFFFFF">Your <span style="color: #7AC74F">Income</span> And <span style="color: #DD403A">Expense</span> History !</h2>
+    <hr style="height:3px;">
+
+    <!-- SCROLL: Buttons To Scroll To The Filter Section Or Graph Section Of The Page.-->
+    <div class="flex">
+        <div class='column1'>
+            <a href="#IncomeExpenseFilter">
+                <button style = "background-color: #303030; width: 100%; border-color: #FAB162; border-width: 3px;" type = "submit" name = "submitButton" class="btn btn-success"><span style='font-family: abc, sans-serif'>Go To Filter</span></button>
+            </a>
+        </div>
+        <div class='column2'>
+            <a href="#IncomeExpenseGraph">
+                <button style = "background-color: #303030; width: 100%; border-color: #FAB162; border-width: 3px;" type = "submit" name = "submitButton" class="btn btn-success"><span style='font-family: abc, sans-serif'>Go To Graph</span></button>
+            </a>
+        </div>
+    </div>
+    <hr style="height:3px;">
+
+    <!-- TABLE: Table To Show IncomeExpense Objects. -->
+    <table>
+        <tr style="background-color: #191919">
+            <th style="width: 5%">DELETE</th>
+            <th style="width: 5%">EDIT</th>
+            <th>TYPE</th>
+            <th>DESCRIPTION</th>
+            <th>VALUE (£)</th>
+            <th>DATE</th>
+        </tr>
+
+        <!-- DISPLAY: Display Message For When A User Deletes An Income Or Expense. -->
+        {% for msg in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{ msg }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        {% endfor %}
+
+        <!-- HTML FOR LOOP: Loop For The Amount Of IncomeExpense Objects Passed In And For Each Object Display Data Associated With It In A Table. -->
+        {% for item in items %}
+            <!-- HTML IF STATEMENT: If Object Type Is Income The Colour Of The Table Row Is Green. -->
+            {% if item.typeIE == "INCOME" %}
+                <tr style="background-color: #7AC74F;">
+                    <!-- DELETE BUTTON: Delete Button For Each Object And Give It The 'a' Tag So We Can Make Use Of 'href' And Provide Functionality To The Button. -->
+                    <td><a style="background-color: #303030; border-color: #303030; border-width: 2px;" href="{% url 'deleteItem' item.id%}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></td>
+                    <!-- EDIT BUTTON: Edit Button For Each Object And Give It The 'a' Tag So We Can Make Use Of 'href' And Provide Functionality To The Button. -->
+                    <td><a style="background-color: #303030; border-color: #303030; border-width: 2px;" href="{% url 'editTransaction' item.id%}" class="btn btn-danger btn-sm"><i class="fa fa-edit"></i></a></td>
+                    <td>{{ item.typeIE }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.value }}</td>
+                    <td>{{ item.date }}</td>
+                </tr>
+            <!-- HTML ELSE STATEMENT: Else Object Type Is Expense The Colour Of The Table Row Is Red. -->
+            {% else %}
+                <tr style="background-color: #DD403A;">
+                    <td><a style="background-color: #303030; border-color: #303030; border-width: 2px;" href="{% url 'deleteItem' item.id%}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></td>
+                    <td><a style="background-color: #303030; border-color: #303030; border-width: 2px;" href="{% url 'editTransaction' item.id%}" class="btn btn-danger btn-sm"><i class="fa fa-edit"></i></a></td>
+                    <td>{{ item.typeIE }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.value }}</td>
+                    <td>{{ item.date }}</td>
+                </tr>
+            {% endif %} <!-- HTML IF STATEMENTS: Statements Have To Be Ended. -->
+        {% endfor %} <!-- FOR LOOP: Have To Be Ended. -->
+    </table>
+
+    <!--
+    {% for item in items %}
+        <a href="{% url 'deleteItem' item.id%}" class="btn btn-outline-danger btn-sm">Delete</a>
+        {{ item.id }}
+        {{ item.typeIE }}
+        {{ item.description }}
+        {{ item.value }}
+        {{ item.date}}
+        <br><br>
+    {% endfor %}
+    -->
+
+    <div id="IncomeExpenseFilter">
+        <hr style="height:3px;">
+        <h2 style="text-align: center; color: #FFFFFF">Filter !</h2>
+        <hr style="height:3px;">
+        <!-- FILTER: Render Filter So it Can Be Displayed -->
+        <form style="font-family: abc,serif; color: #FFFFFF" method="GET">
+            {{ myFilter.form|crispy }}
+            <button style = "background-color: #303030; width: 100%; border-color: #FAB162; border-width: 3px;" type = "submit" name = "submitButton" class="btn btn-success"><span style='font-family: abc, sans-serif'>Click Here To Filter</span></button> <!-- Submit Button Is Required Django Form Doesn't Provide. -->
+        </form>
+    </div>
+
+    <!-- CANVAS: Canvas To Display Chart. -->
+    <div id="IncomeExpenseGraph">
+        <hr style="height:3px;">
+        <h2 style="text-align: center; color: #FFFFFF">Income and Expense Graph !</h2>
+        <hr style="height:3px;">
+        <canvas id="incomeExpenseChart"></canvas>
+    </div>
+
+    <!-- CHART.JS: Include Chart.Js-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- CREATE: Create Chart To Display In Canvas. -->
+    <script>
+          const ctx = document.getElementById('incomeExpenseChart');
+
+          new Chart(ctx, {
+              type: 'bar',
+
+              data: {
+                  labels: ['Income', 'Expense'],
+                  datasets: [{
+                      label: 'Total',
+                      data: [{{ income }}, {{ expense }}],
+                      borderWidth: 1,
+                      backgroundColor: ['#7AC74F', '#DD403A'],
+                  }]
+              },
+              options: {
+                  plugins: {
+                      legend: {
+                          display: false
+                      },
+                  },
+                  scales: {
+                      x: {
+                          ticks: {
+                              color: 'WHITE'
+                          },
+                      },
+                      y: {
+                          ticks: {
+                              color: 'WHITE'
+                          },
+                          beginAtZero: true
+                      }
+                  }
+              }
+          });
+    </script>
+    <!-- SCROLL: Button To Scroll To The Top Of The Page.-->
+    <a href="#HistoryTop">
+        <button style = "background-color: #303030; width: 100%; border-color: #FAB162; border-width: 3px;" type = "submit" name = "submitButton" class="btn btn-success"><span style='font-family: abc, sans-serif'>Go To Top</span></button>
+    </a>
+    <hr style="height:3px;">
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+<!-- BLOCK: 'title' Has Been Blocked To Change The Title Of The Web Page. -->
+{% block title %}
+    Settings Page!
+{% endblock %}
+
+<!-- BLOCK: 'NotAuthenticated' Has Been Blocked To Ensure The Style Sheet Is Not Used. -->
+{% block NotAuthenticated %}
+{% endblock %}
+
+<!-- BLOCK: 'sideBar' Has Been Blocked To Show A Side Navigation Bar With A Coloured Link. -->
+{% block sideBar %}
+    <div class="sideNavigationBar">
+        <a href="/home">Home</a>
+        <hr style="height: 3px">
+        <a href="/add">Add</a>
+        <hr style="height: 3px">
+        <a href="/history">History</a>
+        <hr style="height: 3px">
+        <a href="/settings" style="color: #FAB162">Settings</a>
+        <hr style="height: 3px">
+        <a href="/logout">Logout</a>
+        <hr style="height: 3px">
+    </div>
+{% endblock %}
+
+<!-- BLOCK: 'content' And Change The Content Of The Web Page. -->
+{% block content %}
+    <!-- DISPLAY: Display Page Title. -->
+    <h1 style="text-align: center; color: #FFFFFF">Your <span style="color: #FAB162">Settings</span> {{ user.first_name }} !</h1>
+    <hr style="height:3px;">
+    <h2 style="text-align: center; color: #FFFFFF">Click The Buttons To Change Specified Settings !</h2>
+    <hr style="height:3px;">
+
+    <!-- DISPLAY: Display Page Subtitle. -->
+    <h2 style="text-align: center; color: #FFFFFF">Click To <span style="color: #7AC74F">Edit</span> Profile !</h2>
+    <a style = "background-color: #303030; width: 100%; border-color: #FAB162; border-width: 3px;" href="/settings/editProfile" class="btn btn-success">Edit Profile</a>
+    <hr style="height:3px;">
+    <h2 style="text-align: center; color: #FFFFFF">Click To <span style="color: #7AC74F">Change</span> Password !</h2>
+    <a style = "background-color: #303030; width: 100%; border-color: #FAB162; border-width: 3px;" href="/settings/changePassword" class="btn btn-success">Change Password</a>
+    <hr style="height:3px;">
+    <h2 style="text-align: center; color: #FFFFFF">Click To <span style="color: #DD403A">Delete</span> Account !</h2>
+    <a style = "background-color: #303030; width: 100%; border-color: #FAB162; border-width: 3px;" href="/settings/deleteAccount" class="btn btn-success">Delete Account</a>
+    <hr style="height:3px;">
+{% endblock %}
+
