@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-9nc1(5yh2dltt3f&m95j(53e+$q##&dtg+3%2!$@umx%feq=wz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "akamalah-expensetracker.herokuapp.com"]
 
 # Application definition
 
