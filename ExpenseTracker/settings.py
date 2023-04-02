@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-9nc1(5yh2dltt3f&m95j(53e+$q##&dtg+3%2!$@umx%feq=wz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["akamalah.pythonanywhere.com", "127.0.0.1"]
 
 # Application definition
 
@@ -53,9 +53,6 @@ EMAIL_HOST_PASSWORD = "rtypgxuyqfmdqwfr" # APP PASSWORD: App Password Has Been S
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-
-    "whitenoise.middleware.WhiteNoiseMiddleware",
-    
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -126,8 +123,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = 'static/'
+STATIC_ROOT = "home/akamalah/ExpenseTracker/static"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
