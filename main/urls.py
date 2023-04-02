@@ -3,8 +3,7 @@ from main import views
 
 # URL PATH: Navigate To A View Which Will Provide A HTML Page Through A Specified URL Path.
 # <> (CAPTURE): Value Within Capture Will Be Passed Into A View Parameter.
-# <>: 'itemID' Is Used To Find Out Which Income/Expense To Delete. It Is Passed Into 'deleteItem'.
-# <>: 'itemID' Is Used To Find Out Which Income/Expense To Edit. It Is Passed Into 'editTransaction'.
+# <>: 'itemID' Is Used To Find Out Which Income/Expense To Delete. It Is Passed Into 'deleteItem' and 'editTransaction'.
 # <>: 'userID' Is Used To Find Out Which User To Delete. It Is Passed Into 'deleteUser'.
 urlpatterns = [
     path("", views.welcomePage, name = "welcomePage"),
