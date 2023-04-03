@@ -43,7 +43,7 @@ LOGIN_REDIRECT_URL = "/home"
 # LOGOUT MADE: Once A User Has Logged Out Redirect Them To The Specified URL.
 LOGOUT_REDIRECT_URL = "/logout"
 
-# SMTP Configuration GMAIL
+# SMTP CONFIGURATION: Settings Required To Send Emails With Django.
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
